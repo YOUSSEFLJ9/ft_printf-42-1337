@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 10:15:10 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/13 23:14:31 by ymomen           ###   ########.fr       */
+/*   Updated: 2023/11/14 15:00:09 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,16 @@ int	ft_printf(const char *format, ...)
 	va_start (arg, format);
 	if (write(STDUT, "", 0) == -1 || !format)
 		return (-1);
-	if (!ft_helper(format, &count, arg))
-		return (-1);
+	ft_helper(format, &count, arg);
 	va_end (arg);
 	return (count);
 }
 
-int	ft_helper(const char *format, int *count, va_list arg)
+void	ft_helper(const char *format, int *count, va_list arg)
 {
 	int			hldsize;
 	char		holder[LIMT];
-	int			g_errcheck;
 
-	g_errcheck = 1;
 	hldsize = 0;
 	while (*format != '\0')
 	{
@@ -42,8 +39,8 @@ int	ft_helper(const char *format, int *count, va_list arg)
 		else
 		{
 			ft_printhld(format, holder, &hldsize, count);
-			if (g_errcheck == -1)
-				return (0);
+			if (*(format + 1) == '\0')
+				break ;
 			format++;
 			ft_managecase(arg, format, count);
 		}
@@ -51,5 +48,4 @@ int	ft_helper(const char *format, int *count, va_list arg)
 	}
 	if (hldsize != 0)
 		*count += write(STDUT, holder, hldsize);
-	return (1);
 }
