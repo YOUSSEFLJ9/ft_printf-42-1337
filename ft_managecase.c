@@ -6,7 +6,7 @@
 /*   By: ymomen <ymomen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:45:13 by ymomen            #+#    #+#             */
-/*   Updated: 2023/11/14 02:12:02 by ymomen           ###   ########.fr       */
+/*   Updated: 2023/11/14 14:21:55 by ymomen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void	ft_managecase(va_list arg, const char *format, int *count)
 	else if (*format == 'p')
 		ft_print_add((void *)va_arg(arg, void *), count);
 	else
-		return ;
+		ft_putchar(*format, count);
 }
