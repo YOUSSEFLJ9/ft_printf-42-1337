@@ -13,12 +13,12 @@
 SRC =  ft_managecase.c ft_printf.c ft_printhld.c ft_putchar.c ft_putnbr.c ft_putstr.c ft_putunbr.c ft_putnbr_base.c ft_print_add.c
 OBJ = $(SRC:.c=.o)
 LIB = ar -rcs
-CC = gcc
+CC = cc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
-%.o : %.c
+%.o : %.c ft_printf.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
 all: $(NAME)
